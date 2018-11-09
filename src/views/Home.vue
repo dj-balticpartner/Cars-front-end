@@ -1,6 +1,11 @@
 <template>
-  <div class="home">
+  <div class="home">    
     <section id="intro">
+      <div class="container">
+        <filterForm :filterData="filterData"></filterForm>
+      </div>
+      
+      
           <div class="overVideo">
         </div>    
           <video autoplay muted loop id="carsVideo">
@@ -41,14 +46,17 @@
 // @ is an alias to /src
 
 import car from '@/components/Car.vue'
+import filterForm from '@/components/HomeElements/FilterForm.vue'
 
 export default {
   components: {
-        car
+        car, filterForm
   },
   data(){
     return{
-      
+      filterData: {
+
+      },
       cars: []
     }
   },
@@ -60,13 +68,13 @@ export default {
   },
   methods:{
     printMessage: function(msg){
-      
+      console.log(msg);
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 #carsVideo{
     width:100%;
 }
@@ -94,5 +102,11 @@ export default {
 
 .pageHeader{
       //background: url("./assets/header_bg.png");
+}
+
+#mainSearchForm{
+  position: relative;
+  z-index:1000;
+  padding-top:60px;
 }
 </style>
