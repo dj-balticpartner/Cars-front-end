@@ -7,12 +7,9 @@
                 <div class="col-lg-4">                
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Brand</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option selected value="" disabled>-Select brand-</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select class="form-control" id="exampleFormControlSelect1" @change="brandSelectChange()" v-model="this.filterData.selected_brand">                        
+                        <option value="" selected disabled>-select brand-</option>
+                        <option v-for="br in this.filterData.brands" :key="br">{{br}}</option>
                     </select>
                     </div>
                 </div>
@@ -28,13 +25,24 @@
 </template>
 <script>
 export default {
-    props:['filterData'], // filters 
-  name: 'FilterForm',  
-  data(){
-    return {
-    }
+  props: ["filterData"], // filters
+  name: "FilterForm",
+  data() {
+    return {};
   },
+  created() {
+    this.filterData.brands = [];
+    fetch("http://localhost:5001/api/cars/filter/brands")
+      .then(response => response.json())
+      .then(json => {
+        this.filterData.brands = json;
+      });
+  },
+  computed() {},
   methods: {
+    brandSelectChange() {
+        console.log(this.key)
+    }
   }
-}
+};
 </script>

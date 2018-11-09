@@ -55,7 +55,14 @@ export default {
   data(){
     return{
       filterData: {
-
+          selected_brand: "",
+          brands: [],
+          selected_model: "",
+          models: [],
+          selected_engine:0,
+          engines:[],
+          price_min:0,
+          price_max:0
       },
       cars: []
     }
